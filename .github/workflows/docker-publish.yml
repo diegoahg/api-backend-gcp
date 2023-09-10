@@ -10,8 +10,6 @@ on:
   #  - cron: '40 14 * * *'
   push:
     branches: [ "main" ]
-    # Publish semver tags as releases.
-    tags: ${{ github.sha }}
   pull_request:
     branches: [ "main" ]
 
@@ -79,6 +77,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          tags: ${{ github.sha }}
 
 
       # Sign the resulting Docker image digest except on PRs.
