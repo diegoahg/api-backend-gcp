@@ -6,10 +6,10 @@ name: Docker
 # documentation.
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_run:
+    workflows: ["Go"]
+    types:
+      - completed
 
 env:
   # Use docker.io for Docker Hub if empty
