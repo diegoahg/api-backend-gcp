@@ -27,8 +27,6 @@ spec:
       containers:
       # Normal service name
       - name: {DEPLOYMENT_NAME}
-        imagePullSecrets:
-        - name: gcr-json-key
         # Change to your project image (from registry)
         image: {IMAGE_NAME}:{IMAGE_TAG}
         # Always download the image from registry (dev utility)
@@ -44,3 +42,5 @@ spec:
           requests:
             cpu: 50m
             memory: 264Mi
+      imagePullSecrets:
+        - name: gcr-json-key
