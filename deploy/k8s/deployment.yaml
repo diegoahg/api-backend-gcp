@@ -37,10 +37,10 @@ spec:
           # You must specify requests for CPU to autoscale
           # based on CPU utilization
           limits:
-            cpu: 400m
-            memory: 528Mi
+            cpu: 100m
+            memory: 256Mi
           requests:
             cpu: 50m
-            memory: 264Mi
+            memory: 128Mi
       imagePullSecrets:
         - name: gcr-json-key
