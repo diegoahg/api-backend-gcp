@@ -28,7 +28,7 @@ spec:
       # Normal service name
       - name: {DEPLOYMENT_NAME}
         # Change to your project image (from registry)
-        image: {IMAGE_NAME}:{IMAGE_TAG}
+        image: "{IMAGE_NAME}:{IMAGE_TAG}"
         # Always download the image from registry (dev utility)
         imagePullPolicy: Always
         ports:

@@ -110,7 +110,7 @@ jobs:
         sed -i "s~{NAMESPACE}~${{ env.NAMESPACE }}~" deploy/k8s/service.yaml
         sed -i "s~{NAMESPACE}~${{ env.NAMESPACE }}~" deploy/k8s/configmap.yaml
         sed -i "s~{IMAGE_NAME}~${{ env.REGISTRY_HOST }}/${{ env.PROJECT_ID }}/${{ env.REGISTRY_REPO }}/${{ env.DEPLOYMENT_NAME }}~" deploy/k8s/deployment.yaml
-        sed -i "s~{IMAGE_TAG}~ ${{ steps.meta.outputs.tags }}~" deploy/k8s/deployment.yaml
+        sed -i "s~{IMAGE_TAG}~${{ steps.meta.outputs.tags }}~" deploy/k8s/deployment.yaml
         kubectl apply -f ./deploy/k8s/
         kubectl rollout status deployment/$DEPLOYMENT_NAME
         kubectl get services -o wide
