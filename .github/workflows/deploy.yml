@@ -56,7 +56,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
         with:
-          images: ${{ env.REGISTRY_HOST }}/${{ env.GKE_PROJECT }}/${{ env.REGISTRY_REPO }}/${{ env.DEPLOYMENT_NAME }}
+          images: ${{ env.REGISTRY_HOST }}/${{ env.PROJECT_ID }}/${{ env.REGISTRY_REPO }}/${{ env.DEPLOYMENT_NAME }}
       
       - name: Build and push Docker image
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
@@ -114,7 +114,7 @@ jobs:
         sed -i "s~{NAMESPACE}~${{ env.NAMESPACE }}~" deploy/k8s/prod/service.yaml
         sed -i "s~{NAMESPACE}~${{ env.NAMESPACE }}~" deploy/k8s/prod/configmap.yaml
         sed -i "s~{NAMESPACE}~${{ env.NAMESPACE }}~" deploy/k8s/prod/autoscaling.yaml
-        sed -i "s~{IMAGE_NAME}~${{ env.REGISTRY_HOST }}/${{ env.GKE_PROJECT }}/${{ env.REGISTRY_REPO }}/${{ env.DEPLOYMENT_NAME }}~" deploy/k8s/prod/deployment.yaml
+        sed -i "s~{IMAGE_NAME}~${{ env.REGISTRY_HOST }}/${{ env.PROJECT_ID }}/${{ env.REGISTRY_REPO }}/${{ env.DEPLOYMENT_NAME }}~" deploy/k8s/prod/deployment.yaml
         sed -i "s~{IMAGE_TAG}~${{ env.IMAGE_TAG }}~" deploy/k8s/prod/deployment.yaml
         kubectl apply -f ./deploy/k8s/
         kubectl rollout status deployment/$DEPLOYMENT_NAME
