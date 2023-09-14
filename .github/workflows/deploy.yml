@@ -17,6 +17,7 @@ env:
   GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}    # Add your cluster name here.
   GKE_ZONE: us-east4   # Add your cluster zone here.
   IMAGE_TAG: ${{ github.sha }}
+  NAMESPACE: tisw-prod
 
 
 jobs:
