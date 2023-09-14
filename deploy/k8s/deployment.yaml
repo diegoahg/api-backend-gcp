@@ -1,0 +1,57 @@
+# POD - API configuration (with SQL Proxy)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # Normal service name
+  name: {DEPLOYMENT_NAME}
+  namespace: {NAMESPACE}
+spec:
+  # Number of replicas
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  revisionHistoryLimit: 2
+  selector:
+    matchLabels:
+      app: {DEPLOYMENT_NAME}
+  template:
+    metadata:
+      labels:
+        # Normal service name and tier (same selectors as the service configuration)
+        app: {DEPLOYMENT_NAME}
+        tier: backend
+    spec:
+      imagePullSecrets:
+      - name: gcr-json-key
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - {DEPLOYMENT_NAME}
+            topologyKey: kubernetes.io/hostname
+      containers:
+      # Normal service name
+      - name: {DEPLOYMENT_NAME}
+        # Change to your project image (from registry)
+        image: {IMAGE_NAME}:{IMAGE_TAG}
+        # Always download the image from registry (dev utility)
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 8080
+        resources:
+          # You must specify requests for CPU to autoscale
+          # based on CPU utilization
+          limits:
+            cpu: 400m
+            memory: 528Mi
+          requests:
+            cpu: 50m
+            memory: 264Mi
+        env:

@@ -1,0 +1,9 @@
+## MASKING ENVIRONMENT
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {DEPLOYMENT_NAME}-config
+  namespace: {NAMESPACE}
+  labels:
+    name: {DEPLOYMENT_NAME}
+data:

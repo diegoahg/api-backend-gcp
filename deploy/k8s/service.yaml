@@ -1,0 +1,20 @@
+# Service configuration
+# You can configure the service exposure here
+# be-serviceName for BackEnd, bff-serviceName for BackendForFrontend, dal-serviceName for Data Abstraction Layer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {DEPLOYMENT_NAME}-svc
+  namespace: {NAMESPACE}
+spec:
+  type: ClusterIP
+  ports:
+  - name: http
+    protocol: TCP
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: {DEPLOYMENT_NAME}
+    tier: backend
+
