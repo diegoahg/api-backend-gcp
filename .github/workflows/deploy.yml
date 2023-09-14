@@ -19,7 +19,7 @@ env:
   #IMAGE_TAG: ${{ github.sha }}
   IMAGE_TAG: ${{ github.ref_name }}
   NAMESPACE: tisw-prod
-  API_HOST: testito.tisw.cl
+  API_HOST: tesito.tisw.cl
 
 
 jobs:
