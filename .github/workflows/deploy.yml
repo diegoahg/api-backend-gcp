@@ -64,9 +64,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags:
-            ${{ steps.meta.outputs.tags }}
-            ${{ env.REGISTRY_HOST }}/${{ env.PROJECT_ID }}/${{ env.REGISTRY_REPO }}/${{ env.DEPLOYMENT_NAME }}:${{ env.IMAGE_TAG }}
+          tags: ${{ env.IMAGE_TAG }}
           labels: ${{ steps.meta.outputs.labels }}
 
   deploy:
