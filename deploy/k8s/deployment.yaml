@@ -37,8 +37,8 @@ spec:
           # You must specify requests for CPU to autoscale
           # based on CPU utilization
           limits:
-            cpu: 100m
-            memory: 256Mi
+            cpu: 50m
+            memory: 128Mi
           requests:
             cpu: 50m
             memory: 128Mi
