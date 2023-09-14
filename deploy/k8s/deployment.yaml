@@ -24,21 +24,11 @@ spec:
         app: {DEPLOYMENT_NAME}
         tier: backend
     spec:
-      imagePullSecrets:
-      - name: gcr-json-key
-      affinity:
-        podAntiAffinity:
-          requiredDuringSchedulingIgnoredDuringExecution:
-          - labelSelector:
-              matchExpressions:
-              - key: app
-                operator: In
-                values:
-                - {DEPLOYMENT_NAME}
-            topologyKey: kubernetes.io/hostname
       containers:
       # Normal service name
       - name: {DEPLOYMENT_NAME}
+        imagePullSecrets:
+        - name: gcr-json-key
         # Change to your project image (from registry)
         image: {IMAGE_NAME}:{IMAGE_TAG}
         # Always download the image from registry (dev utility)
@@ -54,4 +44,3 @@ spec:
           requests:
             cpu: 50m
             memory: 264Mi
-        env:
