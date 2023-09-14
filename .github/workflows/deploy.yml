@@ -117,5 +117,5 @@ jobs:
         sed -i "s~{IMAGE_TAG}~${{ env.IMAGE_TAG }}~" deploy/k8s/deployment.yaml
         sed -i "s~{API_HOST}~${{ env.API_HOST }}~" deploy/k8s/ingress.yaml
         kubectl apply -f ./deploy/k8s/
-        kubectl rollout status deployment/$DEPLOYMENT_NAME
+        kubectl rollout status deployment/$DEPLOYMENT_NAME -n ${{ env.NAMESPACE }}
         kubectl get services -o wide
