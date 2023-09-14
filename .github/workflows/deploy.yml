@@ -12,11 +12,11 @@ on:
 env:
   REGISTRY_HOST: southamerica-west1-docker.pkg.dev
   REGISTRY_REPO: tisw
-  IMAGE_NAME: $REGISTRY_HOST/$GKE_PROJEC/$REGISTRY_REPO/${{ github.repository }}
+  DEPLOYMENT_NAME: api-backend-gcp # Add your deployment name here.
+  IMAGE_NAME: $REGISTRY_HOST/$GKE_PROJEC/$REGISTRY_REPO/$DEPLOYMENT_NAME
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}    # Add your cluster name here.
   GKE_ZONE: us-east4   # Add your cluster zone here.
-  DEPLOYMENT_NAME: api-backend-gcp # Add your deployment name here.
   IMAGE_TAG: ${{ github.sha }}
 
 
