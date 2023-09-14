@@ -19,6 +19,7 @@ env:
   #IMAGE_TAG: ${{ github.sha }}
   IMAGE_TAG: ${{ github.ref_name }}
   NAMESPACE: tisw-prod
+  API_HOST: testito.tisw.cl
 
 
 jobs:
@@ -107,11 +108,14 @@ jobs:
         sed -i "s~{DEPLOYMENT_NAME}~${{ env.DEPLOYMENT_NAME }}~" deploy/k8s/deployment.yaml
         sed -i "s~{DEPLOYMENT_NAME}~${{ env.DEPLOYMENT_NAME }}~" deploy/k8s/service.yaml
         sed -i "s~{DEPLOYMENT_NAME}~${{ env.DEPLOYMENT_NAME }}~" deploy/k8s/configmap.yaml
+        sed -i "s~{DEPLOYMENT_NAME}~${{ env.DEPLOYMENT_NAME }}~" deploy/k8s/ingress.yaml
         sed -i "s~{NAMESPACE}~${{ env.NAMESPACE }}~" deploy/k8s/deployment.yaml
         sed -i "s~{NAMESPACE}~${{ env.NAMESPACE }}~" deploy/k8s/service.yaml
         sed -i "s~{NAMESPACE}~${{ env.NAMESPACE }}~" deploy/k8s/configmap.yaml
+        sed -i "s~{NAMESPACE}~${{ env.NAMESPACE }}~" deploy/k8s/ingress.yaml
         sed -i "s~{IMAGE_NAME}~${{ env.REGISTRY_HOST }}/${{ env.PROJECT_ID }}/${{ env.REGISTRY_REPO }}/${{ env.DEPLOYMENT_NAME }}~" deploy/k8s/deployment.yaml
         sed -i "s~{IMAGE_TAG}~${{ env.IMAGE_TAG }}~" deploy/k8s/deployment.yaml
+        sed -i "s~{API_HOST}~${{ env.API_HOST }}~" deploy/k8s/ingress.yaml
         kubectl apply -f ./deploy/k8s/
         kubectl rollout status deployment/$DEPLOYMENT_NAME
         kubectl get services -o wide
