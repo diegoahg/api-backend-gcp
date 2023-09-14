@@ -17,7 +17,7 @@ env:
   GKE_CLUSTER: ${{ secrets.GKE_CLUSTER }}    # Add your cluster name here.
   GKE_ZONE: us-east4   # Add your cluster zone here.
   DEPLOYMENT_NAME: api-backend-gcp # Add your deployment name here.
-  IMAGE_TAG: $GITHUB_SHA
+  IMAGE_TAG: ${{ github.sha }}
 
 
 jobs:
